@@ -12,8 +12,9 @@ export const SearchResults = ({ results, onSelect }: SearchResultsProps) => {
   return (
     <CommandList>
       <ScrollArea className="h-[300px] sm:h-[400px]">
-        <CommandEmpty>No results found.</CommandEmpty>
-        {results.length > 0 && (
+        {results.length === 0 ? (
+          <CommandEmpty>No results found.</CommandEmpty>
+        ) : (
           <CommandGroup heading="Available Products">
             {results.map((result) => (
               <SearchResultItem

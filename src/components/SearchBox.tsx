@@ -21,16 +21,25 @@ const SearchBox = () => {
 
   const handleSearch = (search: string) => {
     setValue(search);
-    const filtered = filterResults(search, priceFilter, locationFilter, strainFilter);
-    setResults(filtered);
+    // Only filter results if there's a search term
+    if (search.trim()) {
+      const filtered = filterResults(search, priceFilter, locationFilter, strainFilter);
+      setResults(filtered);
+    } else {
+      // Clear results when search is empty
+      setResults([]);
+    }
   };
 
   const handleFilterChange = (price: string, location: string, strain: string) => {
     setPriceFilter(price);
     setLocationFilter(location);
     setStrainFilter(strain);
-    const filtered = filterResults(value, price, location, strain);
-    setResults(filtered);
+    // Only apply filters if there's a search term
+    if (value.trim()) {
+      const filtered = filterResults(value, price, location, strain);
+      setResults(filtered);
+    }
   };
 
   return (
@@ -40,10 +49,13 @@ const SearchBox = () => {
           <div className="flex-1 min-w-0">
             <Command className="rounded-lg border shadow-md">
               <SearchInput value={value} onValueChange={handleSearch} />
-              <SearchResults results={results} onSelect={(value) => {
-                setValue(value);
-                setOpen(false);
-              }} />
+              <SearchResults 
+                results={results} 
+                onSelect={(value) => {
+                  setValue(value);
+                  setOpen(false);
+                }} 
+              />
             </Command>
           </div>
 
