@@ -65,7 +65,7 @@ export const ProductGrid = () => {
               <div className="flex flex-col gap-3">
                 <div className="flex justify-between items-center text-sm text-muted-foreground">
                   <span>{product.vendor.name}</span>
-                  <span>Rating: {product.vendor.rating}/5</span>
+                  <span>{product.vendor.location}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className={`text-sm ${product.inStock ? 'text-green-600' : 'text-red-500'}`}>
