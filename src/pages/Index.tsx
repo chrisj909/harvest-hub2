@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { FeaturedProducts } from "@/components/FeaturedProducts";
-import { Button } from "@/components/ui/button";
+import SearchBox from "@/components/SearchBox";
 
 const Index = () => {
   return (
@@ -9,6 +9,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <SearchBox />
         <FeaturedProducts />
       </main>
     </div>
