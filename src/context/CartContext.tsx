@@ -55,14 +55,14 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     return calculatedTotal;
   }, [items]);
 
-  const value = {
+  const value = useMemo(() => ({
     items,
     addItem,
     removeItem,
     updateQuantity,
     clearCart,
     total
-  };
+  }), [items, addItem, removeItem, updateQuantity, clearCart, total]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
