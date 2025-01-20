@@ -12,13 +12,18 @@ import type { SearchResult } from "@/types/search";
 const SearchBox = () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
-  const [results, setResults] = useState<SearchResult[]>(mockResults);
+  const [results, setResults] = useState<SearchResult[]>([]);
   const [priceFilter, setPriceFilter] = useState<string>("all");
   const [locationFilter, setLocationFilter] = useState<string>("all");
   const [strainFilter, setStrainFilter] = useState<string>("all");
 
   const handleSearch = (search: string) => {
     setValue(search);
+    if (!search.trim()) {
+      setResults([]);
+      return;
+    }
+    
     const filtered = mockResults.filter((result) =>
       result.name.toLowerCase().includes(search.toLowerCase()) ||
       result.strain.toLowerCase().includes(search.toLowerCase()) ||
@@ -62,10 +67,10 @@ const SearchBox = () => {
                 onValueChange={handleSearch}
                 className="h-12"
               />
-              {value && (
-                <CommandList>
-                  <ScrollArea className="h-[300px] sm:h-[400px]">
-                    <CommandEmpty>No results found.</CommandEmpty>
+              <CommandList>
+                <ScrollArea className="h-[300px] sm:h-[400px]">
+                  <CommandEmpty>No results found.</CommandEmpty>
+                  {results.length > 0 && (
                     <CommandGroup heading="Available Products">
                       {results.map((result) => (
                         <SearchResultItem
@@ -78,9 +83,9 @@ const SearchBox = () => {
                         />
                       ))}
                     </CommandGroup>
-                  </ScrollArea>
-                </CommandList>
-              )}
+                  )}
+                </ScrollArea>
+              </CommandList>
             </Command>
           </div>
 
