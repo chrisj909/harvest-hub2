@@ -21,13 +21,12 @@ const SearchBox = () => {
 
   const handleSearch = (search: string) => {
     setValue(search);
-    // Only filter results if there's a search term
     if (search.trim()) {
       const filtered = filterResults(search, priceFilter, locationFilter, strainFilter);
       setResults(filtered);
     } else {
-      // Clear results when search is empty
       setResults([]);
+      setOpen(false); // Close the command menu when search is cleared
     }
   };
 
@@ -35,7 +34,6 @@ const SearchBox = () => {
     setPriceFilter(price);
     setLocationFilter(location);
     setStrainFilter(strain);
-    // Only apply filters if there's a search term
     if (value.trim()) {
       const filtered = filterResults(value, price, location, strain);
       setResults(filtered);
@@ -49,13 +47,16 @@ const SearchBox = () => {
           <div className="flex-1 min-w-0">
             <Command className="rounded-lg border shadow-md">
               <SearchInput value={value} onValueChange={handleSearch} />
-              <SearchResults 
-                results={results} 
-                onSelect={(value) => {
-                  setValue(value);
-                  setOpen(false);
-                }} 
-              />
+              {value.trim() && ( // Only show results if there's a search term
+                <SearchResults 
+                  results={results} 
+                  onSelect={(selectedValue) => {
+                    setValue(selectedValue);
+                    setResults([]); // Clear results after selection
+                    setOpen(false);
+                  }} 
+                />
+              )}
             </Command>
           </div>
 
