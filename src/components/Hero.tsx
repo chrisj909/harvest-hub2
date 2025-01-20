@@ -9,7 +9,7 @@ export const Hero = () => {
             Premium Hemp Flower & CBD Products
           </h1>
           <p className="text-lg md:text-xl text-gray-600 mb-8 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            Discover our carefully curated selection of organic hemp flowers and CBD products, sourced from trusted local farms.
+            Compare prices and find the best deals on premium hemp flower from trusted local farms and vendors.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.2s" }}>
             <Button size="lg">Shop Hemp Flower</Button>
