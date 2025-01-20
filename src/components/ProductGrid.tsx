@@ -15,7 +15,7 @@ export const ProductGrid = () => {
   if (isLoading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {[1, 2, 3].map((i) => (
             <Card key={i} className="animate-pulse">
               <div className="h-48 bg-gray-200 rounded-t-lg" />
@@ -31,26 +31,26 @@ export const ProductGrid = () => {
   }
 
   if (error) {
-    return <div className="text-center text-red-500">Error loading products</div>;
+    return <div className="text-center text-red-500 p-4">Error loading products</div>;
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {products?.map((product) => (
-          <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+          <Card key={product.id} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
             <img
               src="/placeholder.svg"
               alt={product.name}
               className="w-full h-48 object-cover"
             />
-            <CardHeader>
+            <CardHeader className="flex-grow">
               <div className="flex justify-between items-start">
-                <CardTitle className="text-xl">{product.name}</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">{product.name}</CardTitle>
                 <span className="font-bold text-lg">${product.price}</span>
               </div>
               <CardDescription>
-                <div className="flex gap-2 flex-wrap mt-2">
+                <div className="flex flex-wrap gap-2 mt-2">
                   <Badge variant="secondary">{product.strain}</Badge>
                   <Badge variant="outline">CBD: {product.cbdPercentage}</Badge>
                   <Badge variant="outline">THC: {product.thcPercentage}</Badge>
@@ -60,7 +60,7 @@ export const ProductGrid = () => {
             <CardContent>
               <div className="flex flex-col gap-3">
                 <div className="flex justify-between items-center text-sm text-muted-foreground">
-                  <span>{product.vendor.name}</span>
+                  <span className="truncate">{product.vendor.name}</span>
                   <span>{product.vendor.location}</span>
                 </div>
                 <div className="flex justify-between items-center">
@@ -71,6 +71,7 @@ export const ProductGrid = () => {
                     variant="default"
                     onClick={() => addItem(product)}
                     disabled={!product.inStock}
+                    className="w-full sm:w-auto mt-2 sm:mt-0"
                   >
                     Add to Cart
                   </Button>

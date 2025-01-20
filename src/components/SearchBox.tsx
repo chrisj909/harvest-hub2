@@ -51,10 +51,10 @@ const SearchBox = () => {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto p-4">
+    <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="relative">
-        <div className="flex gap-2">
-          <div className="flex-1">
+        <div className="flex flex-col sm:flex-row gap-2">
+          <div className="flex-1 min-w-0">
             <Command className="rounded-lg border shadow-md">
               <CommandInput
                 placeholder="Search by strain, vendor, or product name..."
@@ -64,7 +64,7 @@ const SearchBox = () => {
               />
               {value && (
                 <CommandList>
-                  <ScrollArea className="h-[400px]">
+                  <ScrollArea className="h-[300px] sm:h-[400px]">
                     <CommandEmpty>No results found.</CommandEmpty>
                     <CommandGroup heading="Available Products">
                       {results.map((result) => (
@@ -86,11 +86,11 @@ const SearchBox = () => {
 
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline" size="icon" className="h-12 w-12">
+              <Button variant="outline" size="icon" className="h-12 w-12 shrink-0">
                 <SlidersHorizontal className="h-4 w-4" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-80">
+            <PopoverContent className="w-[280px] sm:w-[320px] lg:w-[380px]">
               <SearchFilters
                 priceFilter={priceFilter}
                 locationFilter={locationFilter}

@@ -20,7 +20,7 @@ export const Cart = () => {
           )}
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-[400px] sm:w-[540px]">
+      <SheetContent className="w-full sm:w-[400px] lg:w-[540px]">
         <SheetHeader>
           <SheetTitle>Shopping Cart</SheetTitle>
         </SheetHeader>
@@ -31,7 +31,7 @@ export const Cart = () => {
             ) : (
               <div className="space-y-4 pr-4">
                 {items.map((item) => (
-                  <div key={item.id} className="flex items-center gap-4 border-b pb-4">
+                  <div key={item.id} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 border-b pb-4">
                     <img
                       src="/placeholder.svg"
                       alt={item.name}
@@ -60,7 +60,7 @@ export const Cart = () => {
                         </Button>
                       </div>
                     </div>
-                    <div className="flex flex-col items-end gap-2">
+                    <div className="flex flex-col items-end gap-2 w-full sm:w-auto">
                       <span className="font-medium">${(item.price * item.quantity).toFixed(2)}</span>
                       <Button
                         variant="ghost"
