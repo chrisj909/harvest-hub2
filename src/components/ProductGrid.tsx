@@ -2,18 +2,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
-import { mockResults } from "@/data/mockResults";
-
-// In a real implementation, this would fetch from vendor APIs
-const fetchProducts = async () => {
-  // Simulating API call with mock data
-  return mockResults;
-};
+import { fetchVendorProducts } from "@/services/vendorApi";
 
 export const ProductGrid = () => {
   const { data: products, isLoading, error } = useQuery({
     queryKey: ['products'],
-    queryFn: fetchProducts,
+    queryFn: fetchVendorProducts,
   });
 
   if (isLoading) {
