@@ -3,18 +3,18 @@ import { Button } from "@/components/ui/button";
 
 const products = [
   {
-    title: "Fresh Vegetables",
-    description: "Locally grown, organic vegetables",
+    title: "Premium Hemp Flower",
+    description: "Hand-trimmed, organic indoor-grown hemp flower",
     image: "/placeholder.svg",
   },
   {
-    title: "Seasonal Fruits",
-    description: "Hand-picked, fresh seasonal fruits",
+    title: "CBD Tinctures",
+    description: "Full-spectrum CBD oil for daily wellness",
     image: "/placeholder.svg",
   },
   {
-    title: "Dairy Products",
-    description: "Farm-fresh milk and dairy products",
+    title: "Hemp Pre-Rolls",
+    description: "Convenient, ready-to-enjoy hemp flower rolls",
     image: "/placeholder.svg",
   },
 ];
@@ -40,7 +40,7 @@ export const FeaturedProducts = () => {
               </CardHeader>
               <CardContent>
                 <Button variant="outline" className="w-full">
-                  Learn More
+                  View Details
                 </Button>
               </CardContent>
             </Card>
