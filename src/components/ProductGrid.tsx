@@ -3,12 +3,14 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { fetchVendorProducts } from "@/services/vendorApi";
+import { useCart } from "@/context/CartContext";
 
 export const ProductGrid = () => {
   const { data: products, isLoading, error } = useQuery({
     queryKey: ['products'],
     queryFn: fetchVendorProducts,
   });
+  const { addItem } = useCart();
 
   if (isLoading) {
     return (
@@ -65,8 +67,12 @@ export const ProductGrid = () => {
                   <span className={`text-sm ${product.inStock ? 'text-green-600' : 'text-red-500'}`}>
                     {product.inStock ? 'In Stock' : 'Out of Stock'}
                   </span>
-                  <Button variant="outline">
-                    Compare Prices
+                  <Button 
+                    variant="default"
+                    onClick={() => addItem(product)}
+                    disabled={!product.inStock}
+                  >
+                    Add to Cart
                   </Button>
                 </div>
               </div>
