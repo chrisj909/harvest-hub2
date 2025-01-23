@@ -38,14 +38,14 @@ const SearchBox = ({ initialValue = "" }: SearchBoxProps) => {
       <div className="relative">
         <div className="flex flex-col sm:flex-row gap-2">
           <div className="flex-1 min-w-0">
-            <Command className="rounded-lg border shadow-md">
+            <Command shouldFilter={false} className="rounded-lg border shadow-md">
               <SearchInput 
                 value={searchValue} 
                 onValueChange={handleSearch} 
               />
-              {searchValue.trim() !== "" && (
+              {searchValue.trim() !== "" && Array.isArray(results) && (
                 <SearchResults 
-                  results={results || []} 
+                  results={results} 
                   onSelect={(selectedValue) => {
                     setSearchValue(selectedValue);
                     setOpen(false);
