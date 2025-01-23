@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 export const Hero = () => {
   return (
-    <section className="pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-b from-[#F2FCE2] to-white">
+    <section className="pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-b from-[#F2FCE2] via-[#F8FDF0] to-white">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 animate-fade-up">
