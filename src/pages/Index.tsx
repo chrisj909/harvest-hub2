@@ -1,8 +1,6 @@
 import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
-import { FeaturedProducts } from "@/components/FeaturedProducts";
 import SearchBox from "@/components/SearchBox";
-import { ProductGrid } from "@/components/ProductGrid";
+import { BlogSection } from "@/components/BlogSection";
 import { useEffect, useState } from "react";
 
 const Index = () => {
@@ -45,9 +43,8 @@ const Index = () => {
       <div className={`transition-opacity duration-300 ${
         isScrolled ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}>
-        <div className="pt-16">
-          <ProductGrid />
-          <FeaturedProducts />
+        <div className="pt-20">
+          <BlogSection />
         </div>
       </div>
     </div>
