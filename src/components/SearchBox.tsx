@@ -7,6 +7,7 @@ import { SearchFilters } from "./search/SearchFilters";
 import { SearchInput } from "./search/SearchInput";
 import { SearchResults } from "./search/SearchResults";
 import { useSearch } from "@/context/SearchContext";
+import ErrorBoundary from "./ErrorBoundary";
 
 interface SearchBoxProps {
   initialValue?: string;
@@ -35,19 +36,21 @@ const SearchBox = ({ initialValue = "" }: SearchBoxProps) => {
       <div className="relative">
         <div className="flex flex-col sm:flex-row gap-2">
           <div className="flex-1 min-w-0">
-            <Command className="rounded-lg border shadow-md">
-              <SearchInput 
-                value={searchValue} 
-                onValueChange={handleSearch}
-              />
-              <SearchResults 
-                results={results}
-                onSelect={(selectedValue) => {
-                  setSearchValue(selectedValue);
-                  setOpen(false);
-                }}
-              />
-            </Command>
+            <ErrorBoundary>
+              <Command className="rounded-lg border shadow-md">
+                <SearchInput 
+                  value={searchValue} 
+                  onValueChange={handleSearch}
+                />
+                <SearchResults 
+                  results={results}
+                  onSelect={(selectedValue) => {
+                    setSearchValue(selectedValue);
+                    setOpen(false);
+                  }}
+                />
+              </Command>
+            </ErrorBoundary>
           </div>
 
           <Popover>
