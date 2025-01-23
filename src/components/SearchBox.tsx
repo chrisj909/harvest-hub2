@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Command } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -9,15 +9,27 @@ import { SearchResults } from "./search/SearchResults";
 import { useSearchFilters } from "./search/SearchFilterLogic";
 import type { SearchResult } from "@/types/search";
 
-const SearchBox = () => {
+interface SearchBoxProps {
+  initialValue?: string;
+}
+
+const SearchBox = ({ initialValue = "" }: SearchBoxProps) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(initialValue);
   const [results, setResults] = useState<SearchResult[]>([]);
   const [priceFilter, setPriceFilter] = useState<string>("all");
   const [locationFilter, setLocationFilter] = useState<string>("all");
   const [strainFilter, setStrainFilter] = useState<string>("all");
 
   const { filterResults } = useSearchFilters();
+
+  useEffect(() => {
+    setValue(initialValue);
+    if (initialValue.trim()) {
+      const filtered = filterResults(initialValue, priceFilter, locationFilter, strainFilter);
+      setResults(filtered);
+    }
+  }, [initialValue]);
 
   const handleSearch = (search: string) => {
     setValue(search);
@@ -26,7 +38,7 @@ const SearchBox = () => {
       setResults(filtered);
     } else {
       setResults([]);
-      setOpen(false); // Close the command menu when search is cleared
+      setOpen(false);
     }
   };
 
@@ -47,12 +59,12 @@ const SearchBox = () => {
           <div className="flex-1 min-w-0">
             <Command className="rounded-lg border shadow-md">
               <SearchInput value={value} onValueChange={handleSearch} />
-              {value.trim() && ( // Only show results if there's a search term
+              {value.trim() && (
                 <SearchResults 
                   results={results} 
                   onSelect={(selectedValue) => {
                     setValue(selectedValue);
-                    setResults([]); // Clear results after selection
+                    setResults([]);
                     setOpen(false);
                   }} 
                 />
