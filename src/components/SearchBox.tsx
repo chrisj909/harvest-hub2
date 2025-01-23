@@ -31,6 +31,9 @@ const SearchBox = ({ initialValue = "" }: SearchBoxProps) => {
     setSearchValue(search);
   };
 
+  // Initialize empty results array if undefined
+  const safeResults = Array.isArray(results) ? results : [];
+
   return (
     <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="relative">
@@ -43,7 +46,7 @@ const SearchBox = ({ initialValue = "" }: SearchBoxProps) => {
                   onValueChange={handleSearch}
                 />
                 <SearchResults 
-                  results={results}
+                  results={safeResults}
                   onSelect={(selectedValue) => {
                     setSearchValue(selectedValue);
                     setOpen(false);

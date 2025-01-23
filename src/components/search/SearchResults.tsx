@@ -12,23 +12,19 @@ interface SearchResultsProps {
 export const SearchResults = ({ results, onSelect }: SearchResultsProps) => {
   const { searchValue } = useSearch();
   
-  // Guard against empty search
-  if (!searchValue.trim()) {
+  // Don't render anything if there's no search value
+  if (!searchValue?.trim()) {
     return null;
   }
 
-  // Ensure results is always an array
-  const safeResults = Array.isArray(results) ? results : [];
-  
   return (
     <CommandList>
       <ScrollArea className="h-[300px] sm:h-[400px]">
-        {safeResults.length === 0 && searchValue.trim() !== "" && (
+        {results.length === 0 ? (
           <CommandEmpty>No results found.</CommandEmpty>
-        )}
-        {safeResults.length > 0 && (
+        ) : (
           <CommandGroup heading="Available Products">
-            {safeResults.map((result) => (
+            {results.map((result) => (
               <SearchResultItem
                 key={result?.id || Math.random()}
                 result={result}

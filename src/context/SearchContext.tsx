@@ -27,20 +27,24 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Handle empty input case explicitly
-    if (!searchValue.trim()) {
+    if (!searchValue?.trim()) {
       setResults([]);
       return;
     }
 
-    // Ensure filtered results are always an array
-    const filtered = filterResults(searchValue, priceFilter, locationFilter, strainFilter);
-    setResults(Array.isArray(filtered) ? filtered : []);
+    try {
+      const filtered = filterResults(searchValue, priceFilter, locationFilter, strainFilter);
+      setResults(Array.isArray(filtered) ? filtered : []);
+    } catch (error) {
+      console.error('Error filtering results:', error);
+      setResults([]);
+    }
   }, [searchValue, priceFilter, locationFilter, strainFilter]);
 
   const value = {
     searchValue,
     setSearchValue,
-    results: results || [], // Ensure results is always an array
+    results,
     priceFilter,
     locationFilter,
     strainFilter,
