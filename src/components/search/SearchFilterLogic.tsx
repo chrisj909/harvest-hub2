@@ -8,25 +8,20 @@ export const useSearchFilters = () => {
     locationFilter: string,
     strainFilter: string
   ) => {
-    // If search is empty, return empty array
-    if (!search.trim()) {
+    if (!search?.trim()) {
       return [];
     }
 
-    console.log('Filtering with:', { search, priceFilter, locationFilter, strainFilter });
-    console.log('Available mock results:', mockResults);
-
-    // First filter by search term
+    const searchTerms = search.toLowerCase().split(' ');
+    
+    // First filter by search terms
     let filtered = mockResults.filter((result) => {
-      const searchLower = search.toLowerCase();
-      return (
-        result.name.toLowerCase().includes(searchLower) ||
-        result.strain.toLowerCase().includes(searchLower) ||
-        result.vendor.name.toLowerCase().includes(searchLower)
+      return searchTerms.some(term => 
+        result.name.toLowerCase().includes(term) ||
+        result.strain.toLowerCase().includes(term) ||
+        result.vendor.name.toLowerCase().includes(term)
       );
     });
-
-    console.log('After search filter:', filtered);
 
     // Apply price filter
     if (priceFilter !== "all") {
@@ -58,7 +53,6 @@ export const useSearchFilters = () => {
       );
     }
 
-    console.log('Final filtered results:', filtered);
     return filtered;
   };
 

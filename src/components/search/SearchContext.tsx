@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { SearchResult } from '@/types/search';
 import { useSearchFilters } from './SearchFilterLogic';
 
@@ -26,14 +26,18 @@ export const SearchProvider = ({ children, initialValue = "" }: { children: Reac
 
   const { filterResults } = useSearchFilters();
 
-  const handleSearch = (search: string) => {
-    setValue(search);
-    if (search.trim()) {
-      const filtered = filterResults(search, priceFilter, locationFilter, strainFilter);
+  // Effect to handle search when value changes
+  useEffect(() => {
+    if (value.trim()) {
+      const filtered = filterResults(value, priceFilter, locationFilter, strainFilter);
       setResults(filtered);
     } else {
       setResults([]);
     }
+  }, [value, priceFilter, locationFilter, strainFilter]);
+
+  const handleSearch = (search: string) => {
+    setValue(search);
   };
 
   const handleSelect = (selectedValue: string) => {
@@ -45,10 +49,6 @@ export const SearchProvider = ({ children, initialValue = "" }: { children: Reac
     setPriceFilter(price);
     setLocationFilter(location);
     setStrainFilter(strain);
-    if (value.trim()) {
-      const filtered = filterResults(value, price, location, strain);
-      setResults(filtered);
-    }
   };
 
   return (
