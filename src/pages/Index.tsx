@@ -28,13 +28,18 @@ const Index = () => {
         isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}>
         <div className="container mx-auto px-4 text-center space-y-8">
-          <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 animate-fade-up">
-            Find Your Perfect Hemp Product
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto animate-fade-up" style={{ animationDelay: "0.1s" }}>
+          <div className="space-y-4">
+            <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary animate-fade-up">
+              Harvest Hub
+            </h1>
+            <h2 className="text-4xl md:text-6xl font-serif font-bold animate-fade-up" style={{ animationDelay: "0.1s" }}>
+              Find Your Perfect Hemp Product
+            </h2>
+          </div>
+          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto animate-fade-up" style={{ animationDelay: "0.2s" }}>
             Compare prices and discover premium hemp flower from trusted local farms and vendors
           </p>
-          <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          <div className="animate-fade-up" style={{ animationDelay: "0.3s" }}>
             <SearchBox />
           </div>
         </div>
