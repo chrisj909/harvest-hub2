@@ -43,9 +43,9 @@ const SearchBox = ({ initialValue = "" }: SearchBoxProps) => {
                 value={searchValue} 
                 onValueChange={handleSearch} 
               />
-              {searchValue.trim() && (
+              {searchValue.trim() !== "" && (
                 <SearchResults 
-                  results={results} 
+                  results={results || []} 
                   onSelect={(selectedValue) => {
                     setSearchValue(selectedValue);
                     setOpen(false);

@@ -8,7 +8,11 @@ interface SearchResultsProps {
   onSelect: (value: string) => void;
 }
 
-export const SearchResults = ({ results, onSelect }: SearchResultsProps) => {
+export const SearchResults = ({ results = [], onSelect }: SearchResultsProps) => {
+  if (!Array.isArray(results)) {
+    return null;
+  }
+
   return (
     <CommandList>
       <ScrollArea className="h-[300px] sm:h-[400px]">
