@@ -42,5 +42,33 @@ export const mockResults: SearchResult[] = [
     thcPercentage: "0.1%",
     cbdPercentage: "20%",
     inStock: false
+  },
+  {
+    id: "4",
+    name: "CBD Pre-Rolls Pack",
+    price: 24.99,
+    vendor: {
+      name: "Green Mountain Hemp",
+      location: "Vermont",
+      rating: 4.7
+    },
+    strain: "Sativa",
+    thcPercentage: "0.2%",
+    cbdPercentage: "15%",
+    inStock: true
+  },
+  {
+    id: "5",
+    name: "Hemp Flower Bundle",
+    price: 39.99,
+    vendor: {
+      name: "Carolina Hemp Farms",
+      location: "North Carolina",
+      rating: 4.5
+    },
+    strain: "Hybrid",
+    thcPercentage: "0.3%",
+    cbdPercentage: "17%",
+    inStock: true
   }
 ];
