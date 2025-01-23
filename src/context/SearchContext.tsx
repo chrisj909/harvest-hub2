@@ -31,7 +31,7 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
       return;
     }
     const filtered = filterResults(searchValue, priceFilter, locationFilter, strainFilter);
-    setResults(filtered || []);
+    setResults(filtered);
   }, [searchValue, priceFilter, locationFilter, strainFilter]);
 
   const value = {
