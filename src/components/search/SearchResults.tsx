@@ -9,14 +9,16 @@ interface SearchResultsProps {
 }
 
 export const SearchResults = ({ results, onSelect }: SearchResultsProps) => {
+  const safeResults = results || [];
+  
   return (
     <CommandList>
       <ScrollArea className="h-[300px] sm:h-[400px]">
-        {results.length === 0 ? (
+        {safeResults.length === 0 ? (
           <CommandEmpty>No results found.</CommandEmpty>
         ) : (
           <CommandGroup heading="Available Products">
-            {results.map((result) => (
+            {safeResults.map((result) => (
               <SearchResultItem
                 key={result.id}
                 result={result}

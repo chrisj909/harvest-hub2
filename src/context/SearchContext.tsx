@@ -26,8 +26,12 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
   const { filterResults } = useSearchFilters();
 
   useEffect(() => {
+    if (!searchValue.trim()) {
+      setResults([]);
+      return;
+    }
     const filtered = filterResults(searchValue, priceFilter, locationFilter, strainFilter);
-    setResults(Array.isArray(filtered) ? filtered : []);
+    setResults(filtered || []);
   }, [searchValue, priceFilter, locationFilter, strainFilter]);
 
   const value = {
