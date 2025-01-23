@@ -59,16 +59,14 @@ const SearchBox = ({ initialValue = "" }: SearchBoxProps) => {
           <div className="flex-1 min-w-0">
             <Command className="rounded-lg border shadow-md">
               <SearchInput value={value} onValueChange={handleSearch} />
-              {value.trim() && (
-                <SearchResults 
-                  results={results} 
-                  onSelect={(selectedValue) => {
-                    setValue(selectedValue);
-                    setResults([]);
-                    setOpen(false);
-                  }} 
-                />
-              )}
+              <SearchResults 
+                results={results} 
+                onSelect={(selectedValue) => {
+                  setValue(selectedValue);
+                  setResults([]);
+                  setOpen(false);
+                }} 
+              />
             </Command>
           </div>
 
