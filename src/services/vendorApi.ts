@@ -12,7 +12,7 @@ const mockProducts: SearchResult[] = [
       location: "Vermont",
       rating: 4.8
     },
-    strain: "Sour Space Candy",
+    strain: "Sativa",
     thcPercentage: "0.2%",
     cbdPercentage: "18%",
     inStock: true
@@ -26,7 +26,7 @@ const mockProducts: SearchResult[] = [
       location: "North Carolina",
       rating: 4.6
     },
-    strain: "Lifter",
+    strain: "Indica",
     thcPercentage: "0.3%",
     cbdPercentage: "16%",
     inStock: true
@@ -40,7 +40,7 @@ const mockProducts: SearchResult[] = [
       location: "Oregon",
       rating: 4.9
     },
-    strain: "Hawaiian Haze",
+    strain: "Hybrid",
     thcPercentage: "0.1%",
     cbdPercentage: "20%",
     inStock: false

@@ -50,16 +50,16 @@ export const SearchFilters = ({
       </div>
 
       <div className="space-y-2">
-        <h4 className="font-medium">Strain</h4>
+        <h4 className="font-medium">Type</h4>
         <Select value={strainFilter} onValueChange={onStrainChange}>
           <SelectTrigger>
-            <SelectValue placeholder="Select strain" />
+            <SelectValue placeholder="Select type" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Strains</SelectItem>
-            <SelectItem value="Sour Space Candy">Sour Space Candy</SelectItem>
-            <SelectItem value="Lifter">Lifter</SelectItem>
-            <SelectItem value="Hawaiian Haze">Hawaiian Haze</SelectItem>
+            <SelectItem value="all">All Types</SelectItem>
+            <SelectItem value="Sativa">Sativa</SelectItem>
+            <SelectItem value="Indica">Indica</SelectItem>
+            <SelectItem value="Hybrid">Hybrid</SelectItem>
           </SelectContent>
         </Select>
       </div>
