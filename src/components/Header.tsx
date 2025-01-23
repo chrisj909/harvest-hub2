@@ -8,6 +8,7 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import { Link } from "react-router-dom";
+import { SearchProvider } from "@/context/SearchContext";
 
 export const Header = () => {
   return (
@@ -57,7 +58,9 @@ export const Header = () => {
           </Menubar>
         </div>
         <div className="flex-1 px-4">
-          <SearchBox />
+          <SearchProvider>
+            <SearchBox />
+          </SearchProvider>
         </div>
         <div className="flex items-center justify-end">
           <Cart />
