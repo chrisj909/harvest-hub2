@@ -2,6 +2,7 @@ import { CommandList, CommandEmpty, CommandGroup } from "@/components/ui/command
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SearchResultItem } from "./SearchResultItem";
 import type { SearchResult } from "@/types/search";
+import { useSearch } from "@/context/SearchContext";
 
 interface SearchResultsProps {
   results: SearchResult[];
@@ -9,7 +10,13 @@ interface SearchResultsProps {
 }
 
 export const SearchResults = ({ results, onSelect }: SearchResultsProps) => {
+  const { searchValue } = useSearch();
   const safeResults = Array.isArray(results) ? results : [];
+  
+  // Only render CommandList if there's a search value
+  if (!searchValue.trim()) {
+    return null;
+  }
   
   return (
     <CommandList>
