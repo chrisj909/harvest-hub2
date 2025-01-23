@@ -1,4 +1,5 @@
 import { Cart } from "./Cart";
+import SearchBox from "./SearchBox";
 import {
   Menubar,
   MenubarContent,
@@ -10,8 +11,8 @@ import { Link } from "react-router-dom";
 
 export const Header = () => {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
+    <header className="w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-20 items-center">
         <div className="mr-4 hidden md:flex">
           <a className="mr-6 flex items-center space-x-2" href="/">
             <span className="hidden font-bold sm:inline-block">Harvest Hub</span>
@@ -55,7 +56,10 @@ export const Header = () => {
             </MenubarMenu>
           </Menubar>
         </div>
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+        <div className="flex-1 px-4">
+          <SearchBox />
+        </div>
+        <div className="flex items-center justify-end">
           <Cart />
         </div>
       </div>
