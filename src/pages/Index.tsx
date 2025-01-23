@@ -37,29 +37,29 @@ const Index = () => {
         <Header />
       </div>
       
-      <div className={`min-h-screen flex flex-col items-center justify-center transition-opacity duration-300 ${
+      <div className={`min-h-screen flex flex-col items-center justify-center px-4 transition-opacity duration-300 ${
         isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}>
-        <div className="container mx-auto px-4 text-center space-y-8">
-          <div className="space-y-6">
-            <h1 className="text-7xl md:text-8xl font-serif font-bold text-primary animate-fade-up tracking-tight">
+        <div className="w-full max-w-3xl mx-auto text-center space-y-6 sm:space-y-8">
+          <div className="space-y-4 sm:space-y-6">
+            <h1 className="text-7xl sm:text-8xl font-serif font-bold text-primary animate-fade-up tracking-tight px-4">
               Harvest Hub
             </h1>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold animate-fade-up text-foreground/90" style={{ animationDelay: "0.1s" }}>
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold animate-fade-up text-foreground/90 px-4" style={{ animationDelay: "0.1s" }}>
               Find Your Perfect Hemp Product
             </h2>
           </div>
-          <p className="text-xl md:text-2xl text-foreground/70 mb-12 max-w-3xl mx-auto animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          <p className="text-lg sm:text-xl text-foreground/70 max-w-xl mx-auto animate-fade-up px-4" style={{ animationDelay: "0.2s" }}>
             Compare prices and discover premium hemp flower from trusted local farms and vendors
           </p>
-          <div className="animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          <div className="animate-fade-up px-4" style={{ animationDelay: "0.3s" }}>
             <SearchBox initialValue={searchValue} />
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <div className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-3">
               {searchSuggestions.map((suggestion, index) => (
                 <Button
                   key={suggestion}
                   variant="outline"
-                  className="bg-accent/50 hover:bg-accent text-foreground/80 hover:text-foreground"
+                  className="text-sm sm:text-base bg-accent/50 hover:bg-accent text-foreground/80 hover:text-foreground whitespace-nowrap"
                   onClick={() => handleSuggestionClick(suggestion)}
                   style={{ animationDelay: `${0.4 + index * 0.1}s` }}
                 >
