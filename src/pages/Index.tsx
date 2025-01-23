@@ -3,6 +3,7 @@ import SearchBox from "@/components/SearchBox";
 import { BlogSection } from "@/components/BlogSection";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { SearchProvider } from "@/context/SearchContext";
 
 const searchSuggestions = [
   "Indoor CBD Flower",
@@ -53,7 +54,9 @@ const Index = () => {
             Compare prices and discover premium hemp flower from trusted local farms and vendors
           </p>
           <div className="animate-fade-up px-4" style={{ animationDelay: "0.3s" }}>
-            <SearchBox initialValue={searchValue} />
+            <SearchProvider>
+              <SearchBox initialValue={searchValue} />
+            </SearchProvider>
             <div className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-3">
               {searchSuggestions.map((suggestion, index) => (
                 <Button

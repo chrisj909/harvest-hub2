@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Command } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -6,8 +6,7 @@ import { SlidersHorizontal } from "lucide-react";
 import { SearchFilters } from "./search/SearchFilters";
 import { SearchInput } from "./search/SearchInput";
 import { SearchResults } from "./search/SearchResults";
-import { useSearchFilters } from "./search/SearchFilterLogic";
-import type { SearchResult } from "@/types/search";
+import { useSearch } from "@/context/SearchContext";
 
 interface SearchBoxProps {
   initialValue?: string;
@@ -15,40 +14,22 @@ interface SearchBoxProps {
 
 const SearchBox = ({ initialValue = "" }: SearchBoxProps) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(initialValue);
-  const [results, setResults] = useState<SearchResult[]>([]);
-  const [priceFilter, setPriceFilter] = useState<string>("all");
-  const [locationFilter, setLocationFilter] = useState<string>("all");
-  const [strainFilter, setStrainFilter] = useState<string>("all");
-
-  const { filterResults } = useSearchFilters();
-
-  useEffect(() => {
-    setValue(initialValue);
-    if (initialValue.trim()) {
-      const filtered = filterResults(initialValue, priceFilter, locationFilter, strainFilter);
-      setResults(filtered);
-    }
-  }, [initialValue]);
+  const {
+    searchValue,
+    setSearchValue,
+    results,
+    priceFilter,
+    locationFilter,
+    strainFilter,
+    setPriceFilter,
+    setLocationFilter,
+    setStrainFilter,
+  } = useSearch();
 
   const handleSearch = (search: string) => {
-    setValue(search);
-    if (search.trim()) {
-      const filtered = filterResults(search, priceFilter, locationFilter, strainFilter);
-      setResults(filtered);
-    } else {
-      setResults([]);
+    setSearchValue(search);
+    if (!search.trim()) {
       setOpen(false);
-    }
-  };
-
-  const handleFilterChange = (price: string, location: string, strain: string) => {
-    setPriceFilter(price);
-    setLocationFilter(location);
-    setStrainFilter(strain);
-    if (value.trim()) {
-      const filtered = filterResults(value, price, location, strain);
-      setResults(filtered);
     }
   };
 
@@ -58,13 +39,15 @@ const SearchBox = ({ initialValue = "" }: SearchBoxProps) => {
         <div className="flex flex-col sm:flex-row gap-2">
           <div className="flex-1 min-w-0">
             <Command className="rounded-lg border shadow-md">
-              <SearchInput value={value} onValueChange={handleSearch} />
-              {value.trim() && (
+              <SearchInput 
+                value={searchValue} 
+                onValueChange={handleSearch} 
+              />
+              {searchValue.trim() && (
                 <SearchResults 
                   results={results} 
                   onSelect={(selectedValue) => {
-                    setValue(selectedValue);
-                    setResults([]);
+                    setSearchValue(selectedValue);
                     setOpen(false);
                   }} 
                 />
@@ -83,15 +66,9 @@ const SearchBox = ({ initialValue = "" }: SearchBoxProps) => {
                 priceFilter={priceFilter}
                 locationFilter={locationFilter}
                 strainFilter={strainFilter}
-                onPriceChange={(value) => {
-                  handleFilterChange(value, locationFilter, strainFilter);
-                }}
-                onLocationChange={(value) => {
-                  handleFilterChange(priceFilter, value, strainFilter);
-                }}
-                onStrainChange={(value) => {
-                  handleFilterChange(priceFilter, locationFilter, value);
-                }}
+                onPriceChange={setPriceFilter}
+                onLocationChange={setLocationFilter}
+                onStrainChange={setStrainFilter}
               />
             </PopoverContent>
           </Popover>
