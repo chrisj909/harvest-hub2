@@ -8,49 +8,32 @@ export const useSearchFilters = () => {
     locationFilter: string,
     strainFilter: string
   ) => {
-    if (!search?.trim()) {
+    if (!search.trim()) {
       return [];
     }
 
-    const searchTerms = search.toLowerCase().split(' ');
-    
-    // First filter by search terms
-    let filtered = mockResults.filter((result) => {
-      return searchTerms.some(term => 
-        result.name.toLowerCase().includes(term) ||
-        result.strain.toLowerCase().includes(term) ||
-        result.vendor.name.toLowerCase().includes(term)
-      );
-    });
+    let filtered = mockResults.filter(
+      (result) =>
+        result.name.toLowerCase().includes(search.toLowerCase()) ||
+        result.strain.toLowerCase().includes(search.toLowerCase()) ||
+        result.vendor.name.toLowerCase().includes(search.toLowerCase())
+    );
 
-    // Apply price filter
     if (priceFilter !== "all") {
       filtered = filtered.filter((item) => {
-        switch (priceFilter) {
-          case "under20":
-            return item.price < 20;
-          case "20to30":
-            return item.price >= 20 && item.price <= 30;
-          case "over30":
-            return item.price > 30;
-          default:
-            return true;
-        }
+        if (priceFilter === "under20") return item.price < 20;
+        if (priceFilter === "20to30") return item.price >= 20 && item.price <= 30;
+        if (priceFilter === "over30") return item.price > 30;
+        return true;
       });
     }
 
-    // Apply location filter
     if (locationFilter !== "all") {
-      filtered = filtered.filter(
-        (item) => item.vendor.location.toLowerCase() === locationFilter.toLowerCase()
-      );
+      filtered = filtered.filter((item) => item.vendor.location === locationFilter);
     }
 
-    // Apply strain filter
     if (strainFilter !== "all") {
-      filtered = filtered.filter(
-        (item) => item.strain.toLowerCase() === strainFilter.toLowerCase()
-      );
+      filtered = filtered.filter((item) => item.strain === strainFilter);
     }
 
     return filtered;
