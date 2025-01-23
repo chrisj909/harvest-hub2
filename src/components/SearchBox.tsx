@@ -43,15 +43,14 @@ const SearchBox = ({ initialValue = "" }: SearchBoxProps) => {
                 value={searchValue} 
                 onValueChange={handleSearch} 
               />
-              {searchValue.trim() !== "" && (
-                <SearchResults 
-                  results={results} 
-                  onSelect={(selectedValue) => {
-                    setSearchValue(selectedValue);
-                    setOpen(false);
-                  }} 
-                />
-              )}
+              <SearchResults 
+                results={results} 
+                onSelect={(selectedValue) => {
+                  setSearchValue(selectedValue);
+                  setOpen(false);
+                }} 
+                visible={searchValue.trim() !== ""}
+              />
             </Command>
           </div>
 

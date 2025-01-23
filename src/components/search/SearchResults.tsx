@@ -6,21 +6,18 @@ import type { SearchResult } from "@/types/search";
 interface SearchResultsProps {
   results: SearchResult[];
   onSelect: (value: string) => void;
+  visible?: boolean;
 }
 
-export const SearchResults = ({ results, onSelect }: SearchResultsProps) => {
-  if (!Array.isArray(results)) {
-    return (
-      <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
-      </CommandList>
-    );
+export const SearchResults = ({ results, onSelect, visible = true }: SearchResultsProps) => {
+  if (!visible) {
+    return null;
   }
 
   return (
     <CommandList>
       <ScrollArea className="h-[300px] sm:h-[400px]">
-        {results.length === 0 ? (
+        {!Array.isArray(results) || results.length === 0 ? (
           <CommandEmpty>No results found.</CommandEmpty>
         ) : (
           <CommandGroup heading="Available Products">
