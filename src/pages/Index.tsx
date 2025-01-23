@@ -29,10 +29,10 @@ const Index = () => {
       }`}>
         <div className="container mx-auto px-4 text-center space-y-8">
           <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary animate-fade-up">
+            <h1 className="text-6xl md:text-7xl font-serif font-bold text-primary animate-fade-up">
               Harvest Hub
             </h1>
-            <h2 className="text-4xl md:text-6xl font-serif font-bold animate-fade-up" style={{ animationDelay: "0.1s" }}>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold animate-fade-up" style={{ animationDelay: "0.1s" }}>
               Find Your Perfect Hemp Product
             </h2>
           </div>
