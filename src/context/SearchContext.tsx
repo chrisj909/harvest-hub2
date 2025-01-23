@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { SearchResult } from '@/types/search';
 import { useSearchFilters } from '@/components/search/SearchFilterLogic';
 
@@ -25,7 +25,7 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
   
   const { filterResults } = useSearchFilters();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (searchValue.trim()) {
       const filtered = filterResults(searchValue, priceFilter, locationFilter, strainFilter);
       setResults(filtered);
