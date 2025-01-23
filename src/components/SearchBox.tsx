@@ -28,9 +28,6 @@ const SearchBox = ({ initialValue = "" }: SearchBoxProps) => {
 
   const handleSearch = (search: string) => {
     setSearchValue(search);
-    if (!search.trim()) {
-      setOpen(false);
-    }
   };
 
   return (
@@ -41,14 +38,14 @@ const SearchBox = ({ initialValue = "" }: SearchBoxProps) => {
             <Command className="rounded-lg border shadow-md">
               <SearchInput 
                 value={searchValue} 
-                onValueChange={handleSearch} 
+                onValueChange={handleSearch}
               />
               <SearchResults 
-                results={results || []} 
+                results={results} 
                 onSelect={(selectedValue) => {
                   setSearchValue(selectedValue);
                   setOpen(false);
-                }} 
+                }}
               />
             </Command>
           </div>
